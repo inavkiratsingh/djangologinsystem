@@ -1,0 +1,34 @@
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py <app_name>
+
+add 'home.apps.HomeConfig' in installed apps
+
+static and templates folder
+
+add this in your settings file of the project
+    STATICFILES_DIRS = [
+        BASE_DIR / "static"
+    ]
+
+also add <BASE_DIR / "templates"> in templates.dir 
+
+after adding some templates add all urls of home using --
+    path('', include('home.urls'))
+
+now make urls.py file in app --
+    from django.contrib import admin
+    from django.urls import path,include
+    from home import views
+
+    urlpatterns = [
+        path('',views.index, name="home"),
+        path('login',views.login, name="login"),
+        path('logout',views.logout, name="logout")
+    ]
+also create views
+
+create superuser using --
+    python manage.py createsuperuser
